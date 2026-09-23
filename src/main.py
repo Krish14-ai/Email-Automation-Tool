@@ -14,9 +14,9 @@ emailmsg = 'hlo bruh'
 mimeMessage = MIMEMultipart()
 mimeMessage['to'] = 'kkhandelwal292@gmail.com'
 mimeMessage['subject'] = "greetings"
-mimeMessage.attach(MIMETEXT(emailmsg,'plan'))
+mimeMessage.attach(MIMEText(emailmsg,'plan'))
 
-raw_string = base64.urlsafe_b64decode(mimeMessage.as_bytes().decode())
+raw_string = base64.urlsafe_b64encode(mimeMessage.as_bytes()).decode()
 
 message = service.users().messages().send(userID = 'me',body = {'raw' : raw_string}).execute()
 
