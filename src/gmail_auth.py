@@ -24,12 +24,17 @@ def Create_Service(client_secret_file, api_name, api_version , *scopes):
 
     if not cred or not cred.valid:
 <<<<<<< HEAD
+<<<<<<< HEAD
         if cred and cred.expired and cred.refreshed_token:
             cred.reresh(Request())
 =======
         if cred and cred.expired and cred.refresh_token:
             cred.refresh(Request())
 >>>>>>> apple
+=======
+        if cred and cred.expired and cred.refresh_token:
+            cred.refesh(Request())
+>>>>>>> origin/main
         else:
             flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRET_FILE, SCOPES)
             cred = flow.run_local_server()
