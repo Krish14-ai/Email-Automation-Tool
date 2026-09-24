@@ -24,8 +24,8 @@ def Create_Service(client_secret_file, api_name, api_version , *scopes):
 
     if not cred or not cred.valid:
 
-        if cred and cred.expired and cred.refreshed_token:
-            cred.reresh(Request())
+        if cred and cred.expired and cred.refresh_token:
+            cred.refresh(Request())
 
         if cred and cred.expired and cred.refresh_token:
             cred.refresh(Request())

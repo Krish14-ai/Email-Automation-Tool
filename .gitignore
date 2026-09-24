@@ -1,5 +1,4 @@
 *.csv
-*.csv
 *.json
 *.pickle
 token_gmail_v1.pickle
