@@ -1,10 +1,8 @@
 import pandas as pd 
-import pydantic
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator, Field
+from typing import Annotated
 
-
-def get_all_mails():
-    data = pd.read_csv(r"C:\Users\Krish\Downloads\Email-Automation-Tool\mails\data\recipients.csv")
+class mails(BaseModel):
+    name = Annotated[str, Field(..., description= "please Enter your name", min_length= 2, max_length=100)]
     
-    return data["mail"].tolist()
-
+    
