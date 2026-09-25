@@ -9,3 +9,12 @@ class mails(BaseModel):
 
     mail = Annotated[EmailStr, Field(..., description= "Please enter your gmail")]
     
+    
+    @field_validator("mail", mode = "after")
+    def validate_mail(cls, data):
+        
+        for i, row in enumerate(data.itertuples(index=False), start=1):
+            user_id = row.user_id
+            email = row.mail
+            if "-" in email : 
+                raise ValueError(f"invalid gamil found at user {user_id}")            
