@@ -1,6 +1,5 @@
-import pydantic
 from fastapi import FastAPI
-from schema import data_validate 
+from schema.data_methods import get_all_mails 
 
 app = FastAPI()
 
