@@ -109,3 +109,35 @@ The `Mails` Pydantic model enforces the following constraints:
 
 ---
 
+## 💻 Usage
+
+### 1. Send Bulk Emails
+
+Run the main automation script:
+
+```bash
+python src/main.py
+```
+
+- On your first run, a browser tab will open requesting permission to access your Gmail account.
+- Once authorized, a token named `token_gmail_v1.pickle` will be generated locally for future executions.
+- The script iterates through `recipients.csv` and dispatches the configured email to each contact.
+
+### 2. Run the FastAPI Service
+
+To query recipient information and run the web service:
+
+```bash
+uvicorn schema.api:app --reload
+```
+
+- **Interactive API Documentation (Swagger)**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **Alternative Documentation (Redoc)**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+#### Available Endpoints:
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | Health check endpoint returning a welcome message |
+| `GET` | `/mails` | Returns the list of all recipient emails from the CSV database |
+
+---
