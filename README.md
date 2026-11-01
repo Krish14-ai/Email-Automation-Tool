@@ -141,3 +141,14 @@ uvicorn schema.api:app --reload
 | `GET` | `/mails` | Returns the list of all recipient emails from the CSV database |
 
 ---
+
+## 🔒 Security Best Practices
+
+- **Never commit credentials**: Ensure that `client_secret.json` and `token_*.pickle` are included in your `.gitignore` to avoid publishing sensitive tokens.
+- **Principle of Least Privilege**: The application uses the restricted `https://www.googleapis.com/auth/gmail.send` scope, granting write-only access without read access to your inbox.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
