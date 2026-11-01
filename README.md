@@ -44,3 +44,68 @@ Email-Automation-Tool/
 
 ---
 
+## ⚙️ Google Cloud & Gmail API Setup
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project (e.g., `Email-Automation`).
+3. Navigate to **APIs & Services** > **Library** and search for **Gmail API**. Click **Enable**.
+4. Go to **APIs & Services** > **OAuth consent screen**:
+   - Choose **External** (or **Internal** if using Google Workspace).
+   - Add your test email under **Test users**.
+   - Add the scope: `https://www.googleapis.com/auth/gmail.send`.
+5. Navigate to **APIs & Services** > **Credentials**:
+   - Click **Create Credentials** > **OAuth client ID**.
+   - Select **Desktop App** as the Application type.
+   - Download the JSON file, rename it to `client_secret.json`, and place it in the project root directory.
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Krish14-ai/Email-Automation-Tool.git
+   cd Email-Automation-Tool
+   ```
+
+2. **Create and activate a virtual environment**:
+   - **Windows (PowerShell)**:
+     ```powershell
+     python -m venv myenv
+     myenv\Scripts\Activate.ps1
+     ```
+   - **Linux / macOS**:
+     ```bash
+     python3 -m venv myenv
+     source myenv/bin/activate
+     ```
+
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   > *Note: Ensure all required packages are installed:*
+   ```bash
+   pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib pandas fastapi uvicorn "pydantic[email]"
+   ```
+
+---
+
+## 📋 Recipient Data Configuration
+
+Define your recipients in [mails/data/recipients.csv](file:///mails/data/recipients.csv):
+
+```csv
+user_id,name,mail
+001,John Doe,johndoe@example.com
+002,Jane Smith,janesmith@example.com
+```
+
+### Validation Schema (`schema/data_validate.py`)
+The `Mails` Pydantic model enforces the following constraints:
+- `user_id`: Must be exactly 3 numeric digits (e.g., `001`, `042`).
+- `name`: Must be between 2 and 100 characters.
+- `mail`: Must be a valid email string (`EmailStr`) with custom business validation.
+
+---
+
